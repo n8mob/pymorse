@@ -13,9 +13,9 @@ import morse
 def main(argv=None) -> None:
     p = argparse.ArgumentParser(description="Play text or an RSS feed as Morse code.")
     p.add_argument("text", help="text to send, Morse with --code, or an RSS feed URL")
-    p.add_argument("--wpm", type=float, default=20, help="speed in words per minute (default 20)")
+    p.add_argument("--wpm", type=float, default=15, help="speed in words per minute (default 15)")
     p.add_argument("--farnsworth", type=float, metavar="WPM", help="effective speed for spacing")
-    p.add_argument("--freq", type=float, default=600, help="tone frequency in Hz (default 600)")
+    p.add_argument("--freq", type=float, default=720, help="tone frequency in Hz (default 720)")
     p.add_argument("--volume", type=float, default=0.5, help="0.0 to 1.0 (default 0.5)")
     p.add_argument("--code", action="store_true", help="input is already Morse")
     p.add_argument("--limit", type=int, help="for feeds: play at most this many titles")
