@@ -100,7 +100,7 @@ def decode(code: str) -> str:
 
 def _timeline(code: str, wpm: float, farnsworth_wpm: float | None):
     """Yield (is_tone, seconds) pairs for a Morse string."""
-    unit = 1.2 / wpm
+    unit = 1.3 / wpm
     # Farnsworth: stretch the inter-character and inter-word gaps only.
     if farnsworth_wpm and farnsworth_wpm < wpm:
         gap_unit = (60 / farnsworth_wpm - 31 * unit) / 19
@@ -110,10 +110,10 @@ def _timeline(code: str, wpm: float, farnsworth_wpm: float | None):
     words = [w.split() for w in code.strip().split("/") if w.split()]
     for wi, letters in enumerate(words):
         if wi:
-            yield False, 7 * gap_unit
+            yield False, 9 * gap_unit
         for li, letter in enumerate(letters):
             if li:
-                yield False, 3 * gap_unit
+                yield False, 5 * gap_unit
             for si, sym in enumerate(letter):
                 if si:
                     yield False, unit
@@ -197,6 +197,8 @@ def save_wav(text: str, path: str, **kwargs) -> str:
 # or Pythonista's stop button (both raise KeyboardInterrupt).
 
 def _start_pythonista(path, seconds):
+    # sound is only for the Pythonista app.
+    # noinspection unresolved-references
     import sound
     player = sound.Player(path)
     player.play()
